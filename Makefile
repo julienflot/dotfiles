@@ -1,4 +1,4 @@
-CONFIGS = nvim kitty fish
+CONFIGS = nvim kitty fish tmux
 CONFIGS_PATH = ~/.config
 CONFIGS_CLEAN = $(CONFIGS:%=%-clean)
 
