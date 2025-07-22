@@ -46,5 +46,5 @@ function fish_prompt
 end
 
 function fish_right_prompt
-    date +"%H:%m"
+    date +"%H:%M"
 end
