@@ -1,13 +1,21 @@
+local lsp_utils = require("config.lsp_utils")
+
 return {
     'rust-lang/rust.vim',
-    keys = {
-        { "<leader>cb", "<cmd>Cargo build<cr>" },
-        { "<leader>cb", "<cmd>Cargo build --release<cr>" },
-        { "<leader>cr", "<cmd>Cargo run<cr>" },
-        { "<leader>cR", "<cmd>Cargo run --release<cr>" },
-        { "<leader>ct", "<cmd>Cargo test <cr>" },
-    },
     config = function()
         vim.g.rustfmt_autosave = 0
-    end
+    end,
+    -- {
+    --     'saecki/crates.nvim',
+    --     tag = 'stable',
+    --     opts = {
+    --         lsp = {
+    --             enabled = true,
+    --             action = true,
+    --             completion = true,
+    --             hover = true,
+    --             on_attach = lsp_utils.on_attach
+    --         }
+    --     }
+    -- }
 }

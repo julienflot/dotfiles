@@ -25,3 +25,18 @@ local toggle_spell = function()
 end
 map("n", "<F5>", toggle_spell)
 map("n", "<leader>ss", "<cmd>Telescope spell_suggest theme=ivy<cr>")
+
+-- open lazy
+map("n", "<leader>nl", "<cmd>Lazy<cr>")
+
+-- rust bindings
+vim.api.nvim_create_autocmd("BufEnter", {
+    pattern = "*.rs",
+    callback = function(_args)
+        map("n", "<leader>cr", "<cmd>Cargo run<cr>")
+        map("n", "<leader>cR", "<cmd>Cargo run --release<cr>")
+        map("n", "<leader>cb", "<cmd>Cargo build<cr>")
+        map("n", "<leader>cB", "<cmd>Cargo build --release<cr>")
+        map("n", "<leader>ct", "<cmd>Cargo test<cr>")
+    end
+})

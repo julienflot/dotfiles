@@ -29,10 +29,11 @@ vim.opt.termguicolors = true
 vim.opt.mouse = 'a'
 vim.opt.breakindent = true
 vim.opt.conceallevel = 0
+vim.opt.signcolumn = "yes"
 -- activate numbers
 vim.opt.number = true
 vim.opt.relativenumber = true
-
+vim.opt.cmdheight = 1
 vim.opt.cursorline = true
 
 -- save files

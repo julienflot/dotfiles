@@ -1,3 +1,5 @@
+local lsp_utils = require("config.lsp_utils")
+
 local signs = {
     Error = " ",
     Warn = " ",
@@ -18,27 +20,6 @@ end, {
     desc = "Toggle auto formattings",
     bang = false
 })
-
-local function on_attach(_, bufnr)
-    -- little helper for keymaps
-    local map = function(keybinding, action)
-        vim.keymap.set("n", keybinding, action, { silent = true, buffer = bufnr })
-    end
-
-    local builtin_telescope = require('telescope.builtin')
-
-    map("gd", vim.lsp.buf.definition)
-    map("gD", builtin_telescope.lsp_definitions)
-    map("<leader>gi", builtin_telescope.lsp_implementations)
-    map("<leader>lr", builtin_telescope.lsp_references)
-    map("<leader>lf", vim.lsp.buf.format)
-    map("<leader>la", vim.lsp.buf.code_action)
-    map("<leader>li", "<cmd>LspInfo<cr>")
-    map("<leader>ld", vim.diagnostic.open_float)
-    map("<leader>lD", "<cmd>Telescope diagnostics<cr>")
-    map("<F2>", vim.lsp.buf.rename)
-    map("K", vim.lsp.buf.hover)
-end
 
 return {
     {
@@ -89,6 +70,7 @@ return {
                 sources = cmp.config.sources({
                     { name = 'nvim_lsp' },
                     { name = 'buffer' },
+                    { name = 'crates' },
                 }),
                 -- display icons in completion popup
                 window = {
@@ -124,7 +106,7 @@ return {
         lazy = false,
         config = function()
             vim.lsp.config('lua_ls', {
-                on_attach = on_attach,
+                on_attach = lsp_utils.on_attach,
                 on_init = function(client)
                     client.config.settings.Lua = {
                         runtime = {
@@ -148,16 +130,25 @@ return {
             })
 
             vim.lsp.config('clangd', {
-                on_attach = on_attach
+                on_attach = lsp_utils.on_attach
             })
 
             vim.lsp.config('rust_analyzer', {
-                on_attach = on_attach,
+                on_attach = lsp_utils.on_attach,
+            })
+
+            vim.lsp.config('wgsl_analyzer', {
+                cmd = { "wgsl_analyzer" },
+                on_attach = lsp_utils.on_attach,
+            })
+
+            vim.lsp.config('bashls', {
+                on_attach = lsp_utils.on_attach,
             })
 
             vim.lsp.config('tinymist', {
                 on_attach = function(client, bufnr)
-                    on_attach(client, bufnr)
+                    lsp_utils.on_attach(client, bufnr)
                     vim.keymap.set("n", "<leader>tp", function()
                         client:exec_cmd({
                             title = "pin",
@@ -183,7 +174,12 @@ return {
             })
 
             vim.lsp.config('pylsp', {
-                on_attach = on_attach
+                on_attach = lsp_utils.on_attach
+            })
+
+            vim.lsp.config('cmake', {
+                on_attach = lsp_utils.on_attach,
+                root_markers = { "CMakePresets.json", "CTestConfig.cmake", ".git", "build", "cmake", "CMakeLists.txt" }
             })
         end
     },
@@ -202,5 +198,5 @@ return {
             end
         },
     },
-    on_attach = on_attach
+    on_attach = lsp_utils.on_attach
 }

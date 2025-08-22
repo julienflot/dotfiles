@@ -2,11 +2,10 @@ function fish_prompt
     set -l last_status $status
     set -l cwd (prompt_pwd)
     # TODO: find a better solution to set the correct white color
-    set -l white_color "#eff1f5"
 
 	# add ssh info if connected to a disttant client
 	if test -n "$SSH_CLIENT"
-		set_color --bold $white_color -b green
+		set_color --bold black -b green
 		set -l ip (string split ' ' $SSH_CLIENT)
 		echo -n " SSH ($ip[1]) "
 		set_color normal
@@ -14,13 +13,13 @@ function fish_prompt
 
     # display last status info
     if not test $last_status -eq 0
-        set_color --bold $white_color -b red
+        set_color --bold black -b red
         echo -n ' ! '
         set_color normal
     end
 
     # Display current path
-    set_color $white_color -b cyan
+    set_color black -b cyan
     echo -n " $cwd "
 
     # Show git branch and dirty state
@@ -29,9 +28,9 @@ function fish_prompt
 	set -l git_commit (command git rev-parse --short HEAD 2> /dev/null)
 
 	if test -n "$git_dirty"
-		set_color --bold $white_color -b yellow
+		set_color --bold black -b yellow
 	else
-		set_color --bold $white_color -b green
+		set_color --bold black -b green
 	end
 
 	if test -n "$git_branch"
