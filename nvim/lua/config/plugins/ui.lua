@@ -54,23 +54,6 @@ return {
         }
     },
     {
-        "nvim-tree/nvim-tree.lua",
-        lazy = false,
-        dependencies = { "nvim-tree/nvim-web-devicons" },
-        keys = {
-            { "<leader>of", "<cmd>NvimTreeToggle<cr>" },
-        },
-        opts = {
-            renderer = {
-                icons = {
-                    show = {
-                        git = false
-                    }
-                }
-            }
-        }
-    },
-    {
         "folke/zen-mode.nvim",
         opts = {
             plugins = {

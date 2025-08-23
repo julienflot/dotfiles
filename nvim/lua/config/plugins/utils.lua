@@ -34,29 +34,6 @@ return {
         opts = {}
     },
     {
-        'akinsho/toggleterm.nvim',
-        version = "*",
-        config = function()
-            require("toggleterm").setup({})
-
-            -- enable closing the termial with double touch to escape
-            function _G.set_terminal_keymaps()
-                vim.api.nvim_buf_set_keymap(0, "n", "<esc>", "<cmd>ToggleTerm<cr>", { noremap = true, silent = true })
-            end
-
-            local group = vim.api.nvim_create_augroup("ToggleTerm", {})
-            vim.api.nvim_create_autocmd("TermOpen", {
-                pattern = "term://*",
-                callback = set_terminal_keymaps,
-                group = group
-            })
-        end,
-        keys = {
-            { "<leader>ot", "<cmd>ToggleTerm direction=float<cr>" },
-            { "<leader>oT", "<cmd>ToggleTerm direction=vertical size=" .. tostring(require("math").floor(vim.fn.winwidth(0) / 2)) .. "<cr>" },
-        }
-    },
-    {
         'rmagatti/auto-session',
         lazy = false,
         opts = {

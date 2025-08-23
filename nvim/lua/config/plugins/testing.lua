@@ -14,12 +14,6 @@ return {
         }
     },
     {
-        "nvzone/typr",
-        dependencies = "nvzone/volt",
-        opts = {},
-        cmd = { "Typr", "TyprStats" },
-    },
-    {
         "nvim-treesitter/nvim-treesitter-context",
         opts = {
             enable = true
@@ -37,7 +31,27 @@ return {
                 vim.api.nvim_set_option_value("background", "light", {})
                 vim.cmd("colorscheme catppuccin-latte")
             end,
-            update_interval = 1000
+            update_interval = 3000
         }
+    },
+    {
+        'stevearc/oil.nvim',
+        opts = {
+            default_file_explorer = true,
+            columns = {
+                "icon",
+                "size"
+            },
+            float = {
+                padding = 2,
+                max_width = 80,
+                max_height = 25,
+                border = "",
+            }
+        },
+        keys = {
+            { "<leader>of", function() require("oil").open_float() end },
+        },
+        lazy = false,
     }
 }

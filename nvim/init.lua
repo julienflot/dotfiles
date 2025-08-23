@@ -33,7 +33,7 @@ vim.opt.signcolumn = "yes"
 -- activate numbers
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.opt.cmdheight = 1
+vim.opt.cmdheight = 0
 vim.opt.cursorline = true
 
 -- save files
