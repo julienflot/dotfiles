@@ -1,5 +1,7 @@
 set fish_greeting
 
+zoxide init fish | source
+
 # ===================
 # === GIT ALIASES ===
 # ===================
@@ -19,5 +21,9 @@ alias gs="git status --short"
 alias py=python
 alias ipy=ipython
 alias nv=nvim
+alias cd=z
 
 alias icat="kitten icat"
+
+export PATH="$PATH:$HOME/.cargo/bin"
+
